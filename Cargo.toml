@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 colored = "2.0.0"
 rand = "0.8.5"
+termion = "2.0.1"
 
 # supposed to shrink the size, seems to work from 3mb down to 300kb
 [profile.release]
