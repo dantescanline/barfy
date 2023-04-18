@@ -9,6 +9,7 @@ edition = "2021"
 colored = "2.0.0"
 rand = "0.8.5"
 
+# supposed to shrink the size, seems to work from 3mb down to 300kb
 [profile.release]
 opt-level = 'z'     # Optimize for size
 lto = true          # Enable link-time optimization
