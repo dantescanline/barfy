@@ -2,6 +2,7 @@ use colored::Color;
 use colored::Colorize;
 use rand::random;
 
+/// This is the main function... obviously
 fn main() {
     let colors = [
         Color::Black,
@@ -24,14 +25,16 @@ fn main() {
 
     let mut i = 3;
 
-    for x in 1..20002 {
+    for _x in 1..20002 {
         let this_color = colors[i];
         let some_text = "#".color(this_color);
         print!("{}", some_text);
-        if rand::random::<f32>() > 0.8 {
+
+        // Do some random here
+        if random::<f32>() > 0.8 {
             i += 1;
         }
-        i = i % colors.len()
+        i %= colors.len()
     }
-    println!("")
+    println!()
 }
