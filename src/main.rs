@@ -1,3 +1,4 @@
+
 use std::time::Duration;
 
 use colored::Color;
@@ -28,32 +29,42 @@ fn main() {
         Color::BrightWhite,
     ];
 
-    let mut i = 3;
+    let mut i = 3.0;
 
     print!("{}", termion::clear::All);
 
-    let size = termion::terminal_size().unwrap();
-
     loop {
-        for y in 4..(size.1 - 2) {
-            for x in 6..(size.0 - 3) {
-                let this_color = colors[i];
+        let size = termion::terminal_size().unwrap();
+        i += 0.1;
 
-                let chars = ["#"];
+        let min_x = 6;
+        let max_x = size.0 - 3;
+        let min_y = 4;
+        let max_y = size.1 - 2;
 
-                let index = (random::<f32>() * (chars.len() as f32)) as usize;
-                let char: &str = chars[index];
+        for y in min_y..max_y {
+            for x in min_x..max_x {
+                let mut s1 = f32::sin(x as f32 / 8.0 + i);
+                let mut s2 = f32::sin((y as f32 / 6.0) + 1.0 + i);
+                let final_s = (s1 + s2) / 4.0 + 0.5;
+
+                // let this_color = colors[i];
+                let mut this_color = Color::White;
+                
+                let mut char = "O";
+                if(x == min_x || x == max_x -1) {
+                    char = "|";
+                } else if(y == min_y || y == max_y-1) {
+                    char ="=";
+                } else {
+                    this_color = colors[ (final_s * colors.len() as f32) as usize ];
+                }
                 let some_text = char.color(this_color);
 
-                //     // Do some random here
-                if random::<f32>() > 0.2 {
-                    i += 1;
-                }
 
-                i %= colors.len();
                 print!("{}{}", termion::cursor::Goto(x, y), some_text);
             }
         }
-        std::thread::sleep(Duration::from_millis(90));
+        std::thread::sleep(Duration::from_millis(50));
     }
 }
