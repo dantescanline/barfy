@@ -19,14 +19,14 @@ fn main() {
         Color::Magenta,
         Color::Cyan,
         Color::White,
-        Color::BrightBlack,
-        Color::BrightRed,
-        Color::BrightGreen,
-        Color::BrightYellow,
-        Color::BrightBlue,
-        Color::BrightMagenta,
-        Color::BrightCyan,
-        Color::BrightWhite,
+        // Color::BrightBlack,
+        // Color::BrightRed,
+        // Color::BrightGreen,
+        // Color::BrightYellow,
+        // Color::BrightBlue,
+        // Color::BrightMagenta,
+        // Color::BrightCyan,
+        // Color::BrightWhite,
     ];
 
     let mut i = 3.0;
@@ -44,9 +44,11 @@ fn main() {
 
         for y in min_y..max_y {
             for x in min_x..max_x {
-                let mut s1 = f32::sin(x as f32 / 8.0 + i);
-                let mut s2 = f32::sin((y as f32 / 6.0) + 1.0 + i);
-                let final_s = (s1 + s2) / 4.0 + 0.5;
+                let s1 = f32::sin(x as f32 / 6.0 + i);
+                let s2 = f32::sin((y as f32 / 5.0) + 1.0 + i);
+                let s3 = f32::sin((y as f32 / 12.0) + 1.0);
+                let s4 = f32::sin((x as f32 / 12.0) + 3.0);
+                let final_s = (s1 + s2 + s3 + s4) / 8.0 + 0.5;
 
                 // let this_color = colors[i];
                 let mut this_color = Color::White;
